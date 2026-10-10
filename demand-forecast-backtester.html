@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Demand Forecast Backtester | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / MACHINE LEARNING</p><h1>Demand Forecast Backtester</h1><p class="lede">Expanding-window time-series evaluation comparing a ridge forecaster with a seasonal-naive baseline.</p><a class="button" href="demand-forecast-backtester.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/demand-forecast-backtester">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Synthetic daily series → past-only lag features → expanding-window refits → one-step predictions → comparison with a seven-day seasonal baseline.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Only one-step univariate forecasting with synthetic weekly seasonality. No promotion signals, hierarchy, prediction intervals, or multi-step planning. Extend with rolling-origin horizon evaluation and real demand data; report when the baseline wins.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;folds&quot;: 140,
+  &quot;model_mae&quot;: 1.528213333655269,
+  &quot;seasonal_naive_mae&quot;: 2.052209565405696,
+  &quot;relative_mae_improvement&quot;: 0.25533271093921617,
+  &quot;last_predictions&quot;: [
+    {
+      &quot;cutoff&quot;: 235,
+      &quot;actual&quot;: 62.109468256208366,
+      &quot;prediction&quot;: 64.41498326857204,
+      &quot;baseline&quot;: 62.336960293501726
+    },
+    {
+      &quot;cutoff&quot;: 236,
+      &quot;actual&quot;: 61.8814535460337,
+      &quot;prediction&quot;: 59.67834393288694,
+      &quot;baseline&quot;: 57.772365056247516
+    },
+    {
+      &quot;cutoff&quot;: 237,
+      &quot;actual&quot;: 61.74454073401081,
+      &quot;prediction&quot;: 61.983381451273296,
+      &quot;baseline&quot;: 61.754332493286576
+    },
+    {
+      &quot;cutoff&quot;: 238,
+      &quot;actual&quot;: 69.0119405397378,
+      &quot;prediction&quot;: 69.04620881185357,
+      &quot;baseline&quot;: 66.9140507673301
+    },
+    {
+      &quot;cutoff&quot;: 239,
+      &quot;actual&quot;: 73.25675569839889,
+      &quot;prediction&quot;: 76.4225512274256,
+      &quot;baseline&quot;: 76.30861591985277
+    }
+  ]
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>

@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fraud Risk Lab | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / MACHINE LEARNING</p><h1>Fraud Risk Lab</h1><p class="lede">A reproducible synthetic fraud-classification experiment with validation-selected thresholds and held-out evaluation.</p><a class="button" href="fraud-risk-lab.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/fraud-risk-lab">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Seeded synthetic transaction features → sequential train/validation/test split → train-only scaling and logistic regression → validation threshold selection → untouched test report.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Synthetic features and labels cannot establish financial efficacy or fairness. There is no live bank integration or real fraud decisioning. Validate with consented representative data, account-level separation, delayed labels, calibration, subgroup analysis, and human review before any operational use.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;data&quot;: &quot;synthetic; sequential train/validation/test split&quot;,
+  &quot;train_n&quot;: 3600,
+  &quot;validation_n&quot;: 1200,
+  &quot;test_n&quot;: 1200,
+  &quot;test_prevalence&quot;: 0.05,
+  &quot;threshold_from_validation&quot;: 0.18,
+  &quot;average_precision&quot;: 0.2567457147193196,
+  &quot;precision&quot;: 0.2916666666666667,
+  &quot;recall&quot;: 0.35,
+  &quot;confusion_matrix&quot;: [
+    [
+      1089,
+      51
+    ],
+    [
+      39,
+      21
+    ]
+  ],
+  &quot;coefficients_standardized&quot;: [
+    0.8168266187440761,
+    0.9062269104698709,
+    0.5514606690915251
+  ]
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>

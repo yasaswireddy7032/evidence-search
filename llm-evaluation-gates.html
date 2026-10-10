@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LLM Evaluation Gates | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / EVALUATION</p><h1>LLM Evaluation Gates</h1><p class="lede">A paired evaluation harness with slice regressions, bootstrap intervals, dataset fingerprints, cost budgets, and release gates.</p><a class="button" href="llm-evaluation-gates.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/llm-evaluation-gates">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Labeled cases and paired predictions → exact coverage validation → correctness and citation checks → slice metrics → paired bootstrap interval → latency/cost budgets → release decision. A synthetic 18-case fixture demonstrates a refusal regression hidden by aggregate improvement.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Exact-match grading is deliberately narrow. A valid citation ID does not prove factual entailment. The one-case demo is a smoke example, not evidence of model quality. Add blinded human labels, semantic graders, safety slices, and confidence intervals for serious release decisions.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;metrics&quot;: {
+    &quot;accuracy&quot;: 1,
+    &quot;citation_validity&quot;: 1,
+    &quot;coverage&quot;: 1,
+    &quot;p95_latency_ms&quot;: 120.0,
+    &quot;n&quot;: 1
+  },
+  &quot;release_gate&quot;: &quot;pass&quot;,
+  &quot;rows&quot;: [
+    {
+      &quot;id&quot;: &quot;return&quot;,
+      &quot;correct&quot;: true,
+      &quot;citations_valid&quot;: true,
+      &quot;missing&quot;: false,
+      &quot;latency_ms&quot;: 120.0
+    }
+  ]
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>

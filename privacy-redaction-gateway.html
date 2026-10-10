@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Privacy Redaction Gateway | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / SAFETY</p><h1>Privacy Redaction Gateway</h1><p class="lede">A local text-redaction pipeline with overlap handling, stable in-request placeholders, and audit counts.</p><a class="button" href="privacy-redaction-gateway.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/privacy-redaction-gateway">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Input text → regex candidates → card checksum → overlap resolution → per-request placeholders → counts-only audit. All processing is local.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Pattern matching is incomplete and may produce false positives. It misses names, addresses, non-US phone formats, obfuscation, and context-dependent sensitive information. This is not a compliance guarantee or complete DLP system. Add entity models and adversarial multilingual evaluation.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;text&quot;: &quot;Demo only: [EMAIL_1], [PHONE_1], card [CARD_1].&quot;,
+  &quot;redactions&quot;: {
+    &quot;EMAIL&quot;: 1,
+    &quot;PHONE&quot;: 1,
+    &quot;CARD&quot;: 1
+  },
+  &quot;total&quot;: 3
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>

@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "evidence-search",
+    "title": "Evidence Search",
+    "summary": "An authenticated retrieval API with tenant isolation, SQLite persistence, versioned citations, and BM25 evaluation.",
+    "category": "Retrieval",
+    "architecture": "Server-side bearer identity \u2192 reader/writer authorization \u2192 SQLite document store \u2192 overlapping chunks \u2192 tenant-local BM25 \u2192 content-versioned evidence. Integration tests cover access isolation, spoofed tenant fields, persistence, deletion, and content-free auditing.",
+    "limits": "Lexical retrieval misses paraphrases. Tenant IDs are trusted inputs, not authenticated identities. Add an authenticated API, embedding retrieval, reranking, a larger held-out corpus, and citation-grounded generation before presenting this as a full RAG system.",
+    "download": "evidence-search.zip"
+  },
+  {
+    "slug": "durable-agent-workflow",
+    "title": "Durable Agent Workflow",
+    "summary": "A SQLite-backed workflow state machine with approval gates, an audit log, and idempotent local execution.",
+    "category": "Agents",
+    "architecture": "Request \u2192 idempotency check \u2192 pending approval \u2192 approved \u2192 local tool \u2192 completed. SQLite transactions make the state transition and local audit atomic.",
+    "limits": "This is an agent workflow foundation, not an autonomous LLM agent. No authentication, remote tools, retries, or distributed workers. Approval authority must be enforced by the application. Add an outbox for remote effects; never claim global exactly-once execution.",
+    "download": "durable-agent-workflow.zip"
+  },
+  {
+    "slug": "llm-evaluation-gates",
+    "title": "LLM Evaluation Gates",
+    "summary": "A paired evaluation harness with slice regressions, bootstrap intervals, dataset fingerprints, cost budgets, and release gates.",
+    "category": "Evaluation",
+    "architecture": "Labeled cases and paired predictions \u2192 exact coverage validation \u2192 correctness and citation checks \u2192 slice metrics \u2192 paired bootstrap interval \u2192 latency/cost budgets \u2192 release decision. A synthetic 18-case fixture demonstrates a refusal regression hidden by aggregate improvement.",
+    "limits": "Exact-match grading is deliberately narrow. A valid citation ID does not prove factual entailment. The one-case demo is a smoke example, not evidence of model quality. Add blinded human labels, semantic graders, safety slices, and confidence intervals for serious release decisions.",
+    "download": "llm-evaluation-gates.zip"
+  },
+  {
+    "slug": "fraud-risk-lab",
+    "title": "Fraud Risk Lab",
+    "summary": "A reproducible synthetic fraud-classification experiment with validation-selected thresholds and held-out evaluation.",
+    "category": "Machine learning",
+    "architecture": "Seeded synthetic transaction features \u2192 sequential train/validation/test split \u2192 train-only scaling and logistic regression \u2192 validation threshold selection \u2192 untouched test report.",
+    "limits": "Synthetic features and labels cannot establish financial efficacy or fairness. There is no live bank integration or real fraud decisioning. Validate with consented representative data, account-level separation, delayed labels, calibration, subgroup analysis, and human review before any operational use.",
+    "download": "fraud-risk-lab.zip"
+  },
+  {
+    "slug": "demand-forecast-backtester",
+    "title": "Demand Forecast Backtester",
+    "summary": "Expanding-window time-series evaluation comparing a ridge forecaster with a seasonal-naive baseline.",
+    "category": "Machine learning",
+    "architecture": "Synthetic daily series \u2192 past-only lag features \u2192 expanding-window refits \u2192 one-step predictions \u2192 comparison with a seven-day seasonal baseline.",
+    "limits": "Only one-step univariate forecasting with synthetic weekly seasonality. No promotion signals, hierarchy, prediction intervals, or multi-step planning. Extend with rolling-origin horizon evaluation and real demand data; report when the baseline wins.",
+    "download": "demand-forecast-backtester.zip"
+  },
+  {
+    "slug": "drift-sentinel",
+    "title": "Drift Sentinel",
+    "summary": "Distribution monitoring with fixed reference bins, population stability index, and explicit missing-data checks.",
+    "category": "ML operations",
+    "architecture": "Reference sample \u2192 frozen quantile boundaries \u2192 smoothed distributions \u2192 PSI + missingness \u2192 investigation signal. All boundaries and distributions are included in the report for audit.",
+    "limits": "PSI thresholds are illustrative heuristics, not significance tests. Feature drift is not proof of performance drift. Add minimum sample rules, multiple-feature correction, delayed-label metrics, and alert deduplication before operational monitoring.",
+    "download": "drift-sentinel.zip"
+  },
+  {
+    "slug": "catalog-recommender",
+    "title": "Catalog Recommender",
+    "summary": "Item-item collaborative filtering with seen-item exclusion, popularity fallback, and holdout ranking evaluation.",
+    "category": "Machine learning",
+    "architecture": "Unique user-item interactions \u2192 item co-occurrence cosine \u2192 candidate scoring \u2192 seen-item exclusion \u2192 deterministic ranking. The evaluator rejects overlapping train/holdout interactions.",
+    "limits": "Tiny hand-authored demo, no production relevance claim. Item similarity is expensive for large catalogs; add sparse matrices or approximate neighbors. Use time-based holdout, cold-start metadata, diversity constraints, and exposure-aware evaluation.",
+    "download": "catalog-recommender.zip"
+  },
+  {
+    "slug": "ticket-triage-lab",
+    "title": "Ticket Triage Lab",
+    "summary": "A TF-IDF support-ticket classifier with stratified evaluation, confidence-based abstention, and an out-of-vocabulary gate.",
+    "category": "Machine learning",
+    "architecture": "Hand-authored labeled tickets \u2192 stratified split \u2192 train-only TF-IDF \u2192 logistic regression \u2192 confidence / vocabulary checks \u2192 route or human review.",
+    "limits": "Tiny dataset and uncalibrated probabilities. Threshold is illustrative and is not selected from a validation set. Add real de-identified tickets, temporal validation, calibration, multilingual testing, label drift monitoring, and escalation cost analysis.",
+    "download": "ticket-triage-lab.zip"
+  },
+  {
+    "slug": "privacy-redaction-gateway",
+    "title": "Privacy Redaction Gateway",
+    "summary": "A local text-redaction pipeline with overlap handling, stable in-request placeholders, and audit counts.",
+    "category": "Safety",
+    "architecture": "Input text \u2192 regex candidates \u2192 card checksum \u2192 overlap resolution \u2192 per-request placeholders \u2192 counts-only audit. All processing is local.",
+    "limits": "Pattern matching is incomplete and may produce false positives. It misses names, addresses, non-US phone formats, obfuscation, and context-dependent sensitive information. This is not a compliance guarantee or complete DLP system. Add entity models and adversarial multilingual evaluation.",
+    "download": "privacy-redaction-gateway.zip"
+  },
+  {
+    "slug": "resilient-inference-service",
+    "title": "Resilient Inference Service",
+    "summary": "An asynchronous inference adapter with bounded concurrency, deadlines, transient retries, and a circuit breaker.",
+    "category": "ML operations",
+    "architecture": "Caller \u2192 deadline including queue wait \u2192 semaphore \u2192 retryable provider call \u2192 metrics and circuit state. Python 3.11 structured timeout propagates cancellation.",
+    "limits": "Adapter library only: no HTTP server, real model provider, or production load test. Circuit state is process-local and cooldown recovery is simplified rather than single-probe half-open. Add shared quotas, randomized backoff, tracing, authenticated endpoints, provider-specific error mapping, and overload tests.",
+    "download": "resilient-inference-service.zip"
+  }
+]

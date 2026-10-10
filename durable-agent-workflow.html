@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Durable Agent Workflow | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / AGENTS</p><h1>Durable Agent Workflow</h1><p class="lede">A SQLite-backed workflow state machine with approval gates, an audit log, and idempotent local execution.</p><a class="button" href="durable-agent-workflow.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/durable-agent-workflow">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Request → idempotency check → pending approval → approved → local tool → completed. SQLite transactions make the state transition and local audit atomic.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>This is an agent workflow foundation, not an autonomous LLM agent. No authentication, remote tools, retries, or distributed workers. Approval authority must be enforced by the application. Add an outbox for remote effects; never claim global exactly-once execution.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;first&quot;: {
+    &quot;state&quot;: &quot;completed&quot;,
+    &quot;result&quot;: {
+      &quot;count&quot;: 2,
+      &quot;digest&quot;: &quot;82d39cab375029f24b7406b3c56a8c9c8b19e6daed2b6ef09ac036583c03e333&quot;
+    }
+  },
+  &quot;replay&quot;: {
+    &quot;state&quot;: &quot;completed&quot;,
+    &quot;result&quot;: {
+      &quot;count&quot;: 2,
+      &quot;digest&quot;: &quot;82d39cab375029f24b7406b3c56a8c9c8b19e6daed2b6ef09ac036583c03e333&quot;
+    }
+  },
+  &quot;audit&quot;: [
+    &quot;submitted&quot;,
+    &quot;approved&quot;,
+    &quot;completed&quot;
+  ]
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>

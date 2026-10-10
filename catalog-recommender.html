@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catalog Recommender | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / MACHINE LEARNING</p><h1>Catalog Recommender</h1><p class="lede">Item-item collaborative filtering with seen-item exclusion, popularity fallback, and holdout ranking evaluation.</p><a class="button" href="catalog-recommender.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/catalog-recommender">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Unique user-item interactions → item co-occurrence cosine → candidate scoring → seen-item exclusion → deterministic ranking. The evaluator rejects overlapping train/holdout interactions.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Tiny hand-authored demo, no production relevance claim. Item similarity is expensive for large catalogs; add sparse matrices or approximate neighbors. Use time-based holdout, cold-start metadata, diversity constraints, and exposure-aware evaluation.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;recommendations&quot;: [
+    {
+      &quot;item&quot;: &quot;cloud&quot;,
+      &quot;score&quot;: 1.0,
+      &quot;reason&quot;: &quot;co-occurs with python&quot;,
+      &quot;popularity&quot;: 2
+    },
+    {
+      &quot;item&quot;: &quot;data&quot;,
+      &quot;score&quot;: 0.0,
+      &quot;reason&quot;: &quot;popularity fallback&quot;,
+      &quot;popularity&quot;: 1
+    }
+  ],
+  &quot;evaluation&quot;: {
+    &quot;recall_at_k&quot;: 1.0,
+    &quot;ndcg_at_k&quot;: 1.0,
+    &quot;users&quot;: 1,
+    &quot;k&quot;: 3
+  }
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>

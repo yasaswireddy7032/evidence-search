@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Drift Sentinel | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / ML OPERATIONS</p><h1>Drift Sentinel</h1><p class="lede">Distribution monitoring with fixed reference bins, population stability index, and explicit missing-data checks.</p><a class="button" href="drift-sentinel.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/drift-sentinel">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Reference sample → frozen quantile boundaries → smoothed distributions → PSI + missingness → investigation signal. All boundaries and distributions are included in the report for audit.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>PSI thresholds are illustrative heuristics, not significance tests. Feature drift is not proof of performance drift. Add minimum sample rules, multiple-feature correction, delayed-label metrics, and alert deduplication before operational monitoring.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;psi&quot;: 0.522491734825103,
+  &quot;status&quot;: &quot;investigate&quot;,
+  &quot;missing_rate&quot;: 0.0,
+  &quot;reference_n&quot;: 1000,
+  &quot;current_valid_n&quot;: 1000,
+  &quot;bin_edges&quot;: [
+    -1.2573712073489671,
+    -0.7928559078438243,
+    -0.5086262602558463,
+    -0.25965754071919184,
+    0.03281290605745765,
+    0.2660129149878218,
+    0.5715448198414883,
+    0.8939389706656757,
+    1.3468065797867723
+  ],
+  &quot;reference_proportions&quot;: [
+    0.10099999999,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.09900000001
+  ],
+  &quot;current_proportions&quot;: [
+    0.046000000539999995,
+    0.059000000409999996,
+    0.039000000609999995,
+    0.047000000529999995,
+    0.09400000006,
+    0.039000000609999995,
+    0.09800000002,
+    0.1099999999,
+    0.1299999997,
+    0.33799999762000005
+  ]
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>

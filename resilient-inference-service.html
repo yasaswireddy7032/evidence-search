@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Resilient Inference Service | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">ENGINEERING LAB / ML OPERATIONS</p><h1>Resilient Inference Service</h1><p class="lede">An asynchronous inference adapter with bounded concurrency, deadlines, transient retries, and a circuit breaker.</p><a class="button" href="resilient-inference-service.zip">Download source ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/resilient-inference-service">View on GitHub ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Caller → deadline including queue wait → semaphore → retryable provider call → metrics and circuit state. Python 3.11 structured timeout propagates cancellation.</p><h2>Run it locally</h2><pre>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python app.py
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Adapter library only: no HTTP server, real model provider, or production load test. Circuit state is process-local and cooldown recovery is simplified rather than single-probe half-open. Add shared quotas, randomized backoff, tracing, authenticated endpoints, provider-specific error mapping, and overload tests.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+  &quot;results&quot;: [
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    },
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    },
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    },
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    },
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    },
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    },
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    },
+    {
+      &quot;tokens_estimate&quot;: 3,
+      &quot;provider&quot;: &quot;local demonstration&quot;
+    }
+  ],
+  &quot;metrics&quot;: {
+    &quot;success&quot;: 8,
+    &quot;failed&quot;: 0,
+    &quot;attempts&quot;: 8,
+    &quot;rejected&quot;: 0
+  }
+}
+</pre></section></div><aside>Independent portfolio reference implementation. No employer code or customer data. See the included README and tests for assumptions and verification.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Let’s connect ↗</a></footer></body></html>
