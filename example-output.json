@@ -1,0 +1,18 @@
+{
+  "result": {
+    "status": "evidence_found",
+    "evidence": [
+      {
+        "citation": "returns",
+        "excerpt": "Returns accepted within thirty days with receipt.",
+        "score": 1.344001
+      }
+    ],
+    "note": "Extractive evidence only; no generated or verified answer."
+  },
+  "evaluation": {
+    "mrr": 1.0,
+    "recall_at_k": 1.0,
+    "cases": 2
+  }
+}
