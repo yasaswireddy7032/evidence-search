@@ -2,7 +2,7 @@
 source .venv/bin/activate
 pip install -r requirements.txt
 python app.py
-python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Lexical retrieval misses paraphrases. Tenant IDs are trusted inputs, not authenticated identities. Add an authenticated API, embedding retrieval, reranking, a larger held-out corpus, and citation-grounded generation before presenting this as a full RAG system.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Lexical retrieval misses paraphrases, and the service rebuilds an in-memory index per request. Bearer credentials are configured on the server; a production deployment needs an identity provider, encrypted transport and storage, rate limits, per-document access rules, audit atomicity, and load testing. The API returns evidence and does not invoke a language model.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
   &quot;result&quot;: {
     &quot;status&quot;: &quot;evidence_found&quot;,
     &quot;evidence&quot;: [

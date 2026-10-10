@@ -2,7 +2,7 @@
 source .venv/bin/activate
 pip install -r requirements.txt
 python app.py
-python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Exact-match grading is deliberately narrow. A valid citation ID does not prove factual entailment. The one-case demo is a smoke example, not evidence of model quality. Add blinded human labels, semantic graders, safety slices, and confidence intervals for serious release decisions.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
+python -m unittest -v</pre><h2>Engineering boundaries</h2><p>Exact-match grading and citation-ID checks are intentionally narrow; they do not establish factual entailment. The 18-case fixture and bootstrap intervals illustrate the release process, not real model quality. Use representative held-out data, independent human labels, and validated semantic graders before deployment.</p></section><section><h2>Recorded demo output</h2><p>Locally executed on demonstration data. These are not production benchmarks.</p><pre>{
   &quot;metrics&quot;: {
     &quot;accuracy&quot;: 1,
     &quot;citation_validity&quot;: 1,
