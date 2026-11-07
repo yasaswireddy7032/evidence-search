@@ -2,7 +2,7 @@
   {
     "slug": "cited-research-agent",
     "title": "Cited Research Agent",
-    "summary": "A bounded research agent with local document tools, exact-quote citation checks, and an optional Ollama adapter.",
+    "summary": "An agent that searches local documents and checks that its quoted sources are real. It has a step limit and can stop without answering.",
     "category": "Agents",
     "architecture": "Question → model decision → validated search/read tools → answer with source quotes and document hashes, or abstention. Python limits steps and rejects unknown tools and unread citations.",
     "limits": "Nine local tests and a scripted demo pass. Live-model execution has not been validated. Exact quotes do not establish semantic entailment; lexical search misses paraphrases. No web access or filesystem tool is exposed to the model.",
@@ -11,7 +11,7 @@
   {
     "slug": "approval-triage-agent",
     "title": "Approval Triage Agent",
-    "summary": "A support-triage agent with policy lookup, persisted proposals, human approval, and idempotent local assignments.",
+    "summary": "An agent that looks up support policies and suggests where to route a ticket. A person must approve the proposal before it changes a local record.",
     "category": "Agents",
     "architecture": "Ticket → model-selected policy lookup → validated routing proposal → pending SQLite record → human confirmation of the exact proposal → atomic local assignment and audit.",
     "limits": "Nine local tests and a scripted demo pass. Optional Ollama adapter; live-model behavior is not yet validated. Approval is a local CLI boundary, not authenticated multi-user authorization. No replies are sent and no external ticket system is modified.",
@@ -20,7 +20,7 @@
   {
     "slug": "evidence-search",
     "title": "Evidence Search",
-    "summary": "An authenticated retrieval API with tenant isolation, SQLite persistence, versioned citations, and BM25 evaluation.",
+    "summary": "A document search API that keeps tenants’ data separate and returns versioned sources. Includes access-control tests and retrieval evaluation.",
     "category": "Retrieval",
     "architecture": "Server-side bearer identity → reader/writer authorization → SQLite document store → overlapping chunks → tenant-local BM25 → content-versioned evidence. Integration tests cover access isolation, spoofed tenant fields, persistence, deletion, and content-free auditing.",
     "limits": "Lexical retrieval misses paraphrases. The API maps server-configured bearer credentials to tenants and roles, but needs production identity, transport security, rate limits, storage bounds, and load testing. It does not call a language model.",
@@ -29,7 +29,7 @@
   {
     "slug": "durable-agent-workflow",
     "title": "Durable Agent Workflow",
-    "summary": "A SQLite-backed workflow state machine with approval gates, an audit log, and idempotent local execution.",
+    "summary": "A small workflow engine that remembers its progress, waits for approval, and avoids repeating a completed local action.",
     "category": "Agents",
     "architecture": "Request → idempotency check → pending approval → approved → local tool → completed. SQLite transactions make the state transition and local audit atomic.",
     "limits": "This is an agent workflow foundation, not an autonomous LLM agent. No authentication, remote tools, retries, or distributed workers. Approval authority must be enforced by the application. Add an outbox for remote effects; never claim global exactly-once execution.",
@@ -38,7 +38,7 @@
   {
     "slug": "llm-evaluation-gates",
     "title": "LLM Evaluation Gates",
-    "summary": "A paired evaluation harness with slice regressions, bootstrap intervals, dataset fingerprints, cost budgets, and release gates.",
+    "summary": "A tool for comparing two sets of model outputs and checking whether a release hides regressions, costs too much, or runs too slowly.",
     "category": "Evaluation",
     "architecture": "Labeled cases and paired predictions → exact coverage validation → correctness and citation checks → slice metrics → paired bootstrap interval → latency/cost budgets → release decision. A synthetic 18-case fixture demonstrates a refusal regression hidden by aggregate improvement.",
     "limits": "Exact-match grading is deliberately narrow. A valid citation ID does not prove factual entailment. The one-case demo is a smoke example, not evidence of model quality. Add blinded human labels, semantic graders, safety slices, and confidence intervals for serious release decisions.",
@@ -47,7 +47,7 @@
   {
     "slug": "fraud-risk-lab",
     "title": "Fraud Risk Lab",
-    "summary": "A reproducible synthetic fraud-classification experiment with validation-selected thresholds and held-out evaluation.",
+    "summary": "A fraud-classification experiment using synthetic transactions. I separate training, threshold selection, and testing so the final check stays independent.",
     "category": "Machine learning",
     "architecture": "Seeded synthetic transaction features → sequential train/validation/test split → train-only scaling and logistic regression → validation threshold selection → untouched test report.",
     "limits": "Synthetic features and labels cannot establish financial efficacy or fairness. There is no live bank integration or real fraud decisioning. Validate with consented representative data, account-level separation, delayed labels, calibration, subgroup analysis, and human review before any operational use.",
@@ -56,7 +56,7 @@
   {
     "slug": "demand-forecast-backtester",
     "title": "Demand Forecast Backtester",
-    "summary": "Expanding-window time-series evaluation comparing a ridge forecaster with a seasonal-naive baseline.",
+    "summary": "A forecasting experiment that checks whether a ridge model beats a simple seasonal baseline, using only data available at each prediction.",
     "category": "Machine learning",
     "architecture": "Synthetic daily series → past-only lag features → expanding-window refits → one-step predictions → comparison with a seven-day seasonal baseline.",
     "limits": "Only one-step univariate forecasting with synthetic weekly seasonality. No promotion signals, hierarchy, prediction intervals, or multi-step planning. Extend with rolling-origin horizon evaluation and real demand data; report when the baseline wins.",
@@ -65,7 +65,7 @@
   {
     "slug": "drift-sentinel",
     "title": "Drift Sentinel",
-    "summary": "Distribution monitoring with fixed reference bins, population stability index, and explicit missing-data checks.",
+    "summary": "A monitor that compares new data with a reference sample and flags shifts or missing values worth investigating.",
     "category": "ML operations",
     "architecture": "Reference sample → frozen quantile boundaries → smoothed distributions → PSI + missingness → investigation signal. All boundaries and distributions are included in the report for audit.",
     "limits": "PSI thresholds are illustrative heuristics, not significance tests. Feature drift is not proof of performance drift. Add minimum sample rules, multiple-feature correction, delayed-label metrics, and alert deduplication before operational monitoring.",
@@ -74,7 +74,7 @@
   {
     "slug": "catalog-recommender",
     "title": "Catalog Recommender",
-    "summary": "Item-item collaborative filtering with seen-item exclusion, popularity fallback, and holdout ranking evaluation.",
+    "summary": "A recommender that uses item interactions, excludes items already seen, and falls back to popular items when it has little history.",
     "category": "Machine learning",
     "architecture": "Unique user-item interactions → item co-occurrence cosine → candidate scoring → seen-item exclusion → deterministic ranking. The evaluator rejects overlapping train/holdout interactions.",
     "limits": "Tiny hand-authored demo, no production relevance claim. Item similarity is expensive for large catalogs; add sparse matrices or approximate neighbors. Use time-based holdout, cold-start metadata, diversity constraints, and exposure-aware evaluation.",
@@ -83,7 +83,7 @@
   {
     "slug": "ticket-triage-lab",
     "title": "Ticket Triage Lab",
-    "summary": "A TF-IDF support-ticket classifier with stratified evaluation, confidence-based abstention, and an out-of-vocabulary gate.",
+    "summary": "A support-ticket classifier that can send uncertain or unfamiliar tickets for human review instead of forcing a category.",
     "category": "Machine learning",
     "architecture": "Hand-authored labeled tickets → stratified split → train-only TF-IDF → logistic regression → confidence / vocabulary checks → route or human review.",
     "limits": "Tiny dataset and uncalibrated probabilities. Threshold is illustrative and is not selected from a validation set. Add real de-identified tickets, temporal validation, calibration, multilingual testing, label drift monitoring, and escalation cost analysis.",
@@ -92,7 +92,7 @@
   {
     "slug": "privacy-redaction-gateway",
     "title": "Privacy Redaction Gateway",
-    "summary": "A local text-redaction pipeline with overlap handling, stable in-request placeholders, and audit counts.",
+    "summary": "A local tool that replaces some sensitive text patterns with placeholders and records counts without logging the original values.",
     "category": "Safety",
     "architecture": "Input text → regex candidates → card checksum → overlap resolution → per-request placeholders → counts-only audit. All processing is local.",
     "limits": "Pattern matching is incomplete and may produce false positives. It misses names, addresses, non-US phone formats, obfuscation, and context-dependent sensitive information. This is not a compliance guarantee or complete DLP system. Add entity models and adversarial multilingual evaluation.",
@@ -101,7 +101,7 @@
   {
     "slug": "resilient-inference-service",
     "title": "Resilient Inference Service",
-    "summary": "An asynchronous inference adapter with bounded concurrency, deadlines, transient retries, and a circuit breaker.",
+    "summary": "A Python adapter for handling slow or failing model calls, with concurrency limits, deadlines, retries, and a circuit breaker.",
     "category": "ML operations",
     "architecture": "Caller → deadline including queue wait → semaphore → retryable provider call → metrics and circuit state. Python 3.11 structured timeout propagates cancellation.",
     "limits": "Adapter library only: no HTTP server, real model provider, or production load test. Circuit state is process-local and cooldown recovery is simplified rather than single-probe half-open. Add shared quotas, randomized backoff, tracing, authenticated endpoints, provider-specific error mapping, and overload tests.",
