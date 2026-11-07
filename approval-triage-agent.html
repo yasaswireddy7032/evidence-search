@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Approval Triage Agent | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">AGENTIC AI / ADDED NOVEMBER 2026</p><h1>Approval Triage Agent</h1><p class="lede">A support-triage agent with policy lookup, persisted proposals, human approval, and idempotent local assignments.</p><a class="button" href="https://github.com/yasaswireddy7032/approval-triage-agent">Code, tests &amp; setup ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/approval-triage-agent/archive/refs/heads/main.zip">Download source ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Ticket → model-selected policy lookup → validated routing proposal → pending SQLite record → human confirmation of the exact proposal → atomic local assignment and audit.</p><h2>Run the demo</h2><pre>python app.py
+python -m unittest -v</pre><p>Python 3.10+; no Python dependencies. The default demo uses scripted model decisions. See the README for optional Ollama setup.</p><h2>What I tested</h2><p>Nine local tests passed. The recorded output is from the scripted demonstration, not a live model or production benchmark.</p><h2>Limits</h2><p>Nine local tests and a scripted demo pass. Optional Ollama adapter; live-model behavior is not yet validated. Approval is a local CLI boundary, not authenticated multi-user authorization. No replies are sent and no external ticket system is modified.</p></section><section><h2>Recorded demo</h2><pre>{
+  &quot;mode&quot;: &quot;scripted_demo_no_llm&quot;,
+  &quot;result&quot;: {
+    &quot;status&quot;: &quot;pending&quot;,
+    &quot;id&quot;: &quot;27009ee3af8dbfdf18236d33cfb96a33690a94971fb6a421be62357cd3791f3d&quot;,
+    &quot;proposal&quot;: {
+      &quot;queue&quot;: &quot;billing&quot;,
+      &quot;reply&quot;: &quot;Thanks for flagging this. The billing team can review the duplicate charge.&quot;,
+      &quot;summary&quot;: &quot;Customer reports a duplicate charge.&quot;,
+      &quot;ticket_id&quot;: &quot;demo-001&quot;
+    },
+    &quot;trace&quot;: [
+      {
+        &quot;step&quot;: 1,
+        &quot;action&quot;: &quot;policy&quot;,
+        &quot;status&quot;: &quot;ok&quot;
+      }
+    ]
+  },
+  &quot;local_assignments&quot;: 0
+}
+</pre></section></div><aside>Independent portfolio project. Demonstration data only; no employer code or customer records.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Contact ↗</a></footer></body></html>

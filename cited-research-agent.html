@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cited Research Agent | Yasaswi Bhumireddy</title><link rel="stylesheet" href="style.css"></head><body><nav><a class="brand" href="index.html">yb<span> / AI ENGINEER</span></a><a href="index.html#work">← All projects</a></nav><main class="case"><p class="eyebrow">AGENTIC AI / ADDED NOVEMBER 2026</p><h1>Cited Research Agent</h1><p class="lede">A bounded research agent with local document tools, exact-quote citation checks, and an optional Ollama adapter.</p><a class="button" href="https://github.com/yasaswireddy7032/cited-research-agent">Code, tests &amp; setup ↗</a> <a class="text-link" href="https://github.com/yasaswireddy7032/cited-research-agent/archive/refs/heads/main.zip">Download source ↗</a><div class="case-grid"><section><h2>How it works</h2><p>Question → model decision → validated search/read tools → answer with source quotes and document hashes, or abstention. Python limits steps and rejects unknown tools and unread citations.</p><h2>Run the demo</h2><pre>python app.py
+python -m unittest -v</pre><p>Python 3.10+; no Python dependencies. The default demo uses scripted model decisions. See the README for optional Ollama setup.</p><h2>What I tested</h2><p>Nine local tests passed. The recorded output is from the scripted demonstration, not a live model or production benchmark.</p><h2>Limits</h2><p>Nine local tests and a scripted demo pass. Live-model execution has not been validated. Exact quotes do not establish semantic entailment; lexical search misses paraphrases. No web access or filesystem tool is exposed to the model.</p></section><section><h2>Recorded demo</h2><pre>{
+  &quot;mode&quot;: &quot;scripted_demo_no_llm&quot;,
+  &quot;status&quot;: &quot;answered&quot;,
+  &quot;answer&quot;: &quot;The demo policy retains audit records for 30 days.&quot;,
+  &quot;citations&quot;: [
+    {
+      &quot;id&quot;: &quot;retention&quot;,
+      &quot;quote&quot;: &quot;audit records are retained for 30 days.&quot;,
+      &quot;sha256&quot;: &quot;564bd07bad96053e84cdea2bf2287e03eee6013bbb48ae0952b4b85c5c66d244&quot;
+    }
+  ],
+  &quot;trace&quot;: [
+    {
+      &quot;step&quot;: 1,
+      &quot;action&quot;: &quot;search&quot;,
+      &quot;status&quot;: &quot;ok&quot;
+    },
+    {
+      &quot;step&quot;: 2,
+      &quot;action&quot;: &quot;read&quot;,
+      &quot;status&quot;: &quot;ok&quot;
+    },
+    {
+      &quot;step&quot;: 3,
+      &quot;action&quot;: &quot;finish&quot;,
+      &quot;status&quot;: &quot;accepted&quot;
+    }
+  ]
+}
+</pre></section></div><aside>Independent portfolio project. Demonstration data only; no employer code or customer records.</aside></main><footer><span>Yasaswi Bhumireddy</span><a href="index.html#contact">Contact ↗</a></footer></body></html>
