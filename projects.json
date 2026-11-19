@@ -1,5 +1,23 @@
 [
   {
+    "slug": "dispute-copilot",
+    "title": "Dispute Copilot",
+    "summary": "A multi-agent assistant for card charge questions and disputes. A validator checks every fact against the ledger, and fraud or expired disputes go to a person.",
+    "category": "Agents",
+    "architecture": "Guardrails → router → investigator → policy retrieval → explainer (claims cite evidence) → deterministic validator → retry, rules, or human handoff. Reviewer approves drafted disputes against a payload hash.",
+    "limits": "58 tests pass. Rule-based mode: 136/136 templated cases, 11/25 hand-written hard cases. Model-backed results not yet published. Synthetic data; hand-weighted fraud score; policy text is a summary, not legal guidance.",
+    "download": "https://github.com/yasaswireddy7032/dispute-copilot/archive/refs/heads/main.zip"
+  },
+  {
+    "slug": "harbor",
+    "title": "Harbor",
+    "summary": "A private, trauma-informed space for women who've experienced sexual violence to say what they can't say out loud yet.",
+    "category": "Agents",
+    "architecture": "On-device listener with safety routing first, theme-aware validating replies, tap-to-say, show-a-card, encrypted journal and safety plan. No server.",
+    "limits": "14 listener tests. Not yet reviewed by a rape crisis center. US resources only.",
+    "download": "https://github.com/yasaswireddy7032/harbor/archive/refs/heads/main.zip"
+  },
+  {
     "slug": "cited-research-agent",
     "title": "Cited Research Agent",
     "summary": "An agent that searches local documents and checks that its quoted sources are real. It has a step limit and can stop without answering.",
